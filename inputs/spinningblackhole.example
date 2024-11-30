@@ -1,0 +1,48 @@
+<job>
+    problem_id = spinning_black_hole  # Name of the problem
+
+<output1>
+    file_type   = tab         # Output as tabular data
+    variable    = prim       # Output the primitive variables (density, pressure, velocity)
+    data_format = %12.5e     # Format for the data (e.g., scientific notation)
+    dt          = 0.01       # Time step for output
+    x2_slice    = 0.0        # Slice along x2 direction
+    x3_slice    = 0.0        # Slice along x3 direction
+
+<time>
+    cfl_number  = 0.8        # CFL number for stability
+    tlim        = 1.0        # Time limit for the simulation
+    integrator  = vl2        # Time integration method (second-order)
+    xorder      = 2          # Order of spatial reconstruction
+
+<hydro>
+    gamma           = 1.4    # Adiabatic index for gas
+    iso_sound_speed = 1.0    # Isothermal sound speed (can be adjusted based on conditions)
+    eos_file_name   = none   # No equation of state file, using ideal gas model
+    eos_file_type   = auto   # Automatically detect EOS file type
+
+<problem>
+    shock_dir     = 1       # Direction of shock propagation (1=along x1)
+    xshock        = 0.0     # Position of initial shock interface (set to 0 for initial condition)
+    compute_error = 0       # Set to 1 if you want to compute L1 error
+
+    # Parameters for the spinning black hole (if you're modeling accretion or similar)
+    # Black Hole Parameters (simplified example, adjust for full GR modeling)
+    bh_mass = 1e6            # Mass of the black hole (in solar masses)
+    bh_spin = 0.9            # Spin parameter (0 <= a <= 1)
+    bh_position = 0.0        # Position of the black hole (can vary)
+
+<mesh>
+    nx1     = 256           # Number of grid cells in x1-direction
+    x1min   = -0.5          # Minimum x1 value (grid boundary)
+    x1max   = 0.5           # Maximum x1 value (grid boundary)
+
+    nx2     = 256           # Number of grid cells in x2-direction
+    x2min   = -0.5          # Minimum x2 value
+    x2max   = 0.5           # Maximum x2 value
+
+    nx3     = 1             # 1D simulation in x3-direction
+    x3min   = -0.5          # Minimum x3 value
+    x3max   = 0.5           # Maximum x3 value
+    num_threads = 1         # Number of threads for parallel execution
+    
